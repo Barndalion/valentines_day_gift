@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For Shyan 💖</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        h1 {
+            margin-top: 120px;
+            font-size: 45px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 20px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            margin: 20px;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: white;
+            color: #ff2e63;
+            font-weight: bold;
+        }
+
+        #noBtn {
+            background-color: #ff2e63;
+            color: white;
+            position: absolute;
+        }
+
+        .heart {
+            position: absolute;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 0; }
+            100% { transform: translateY(-10vh); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bgAudio" autoplay loop playsinline>
+    <source src="dondelion.mp3" type="audio/mp4">
+    Your browser does not support the audio element.
+</audio>
+
+<h1>Shyan 💌<br>Will You Be My Valentine?</h1>
+<div style="font-size:40px;">🌹🍫💐💖🌹🍫</div>
+
+<button class="btn" id="yesBtn" onclick="goToLove()">Yes 💘</button>
+<button class="btn" id="noBtn" onmouseover="moveButton()">No 😅</button>
+
+<br><br>
+<a href="https://www.youtube.com/results?search_query=loving+you+is+easy+because+you+are+beautiful"
+   target="_blank"
+   style="color:white;font-size:18px;text-decoration:underline;">
+   🎵 Play Our Song 🎵
+</a>
+
+<script>
+let noSize = 1;
+let yesSize = 1;
+
+function moveButton() {
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    noSize -= 0.1;
+    yesSize += 0.1;
+
+    if (noSize > 0) {
+        noBtn.style.transform = "scale(" + noSize + ")";
+    }
+
+    yesBtn.style.transform = "scale(" + yesSize + ")";
+}
+
+function goToLove() {
+    window.location.href = "forced_page.html";
+}
+
+function createHearts() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHearts, 300);
+
+// Audio: best-effort autoplay for a local file `dondelion.mp4`.
+const audio = document.getElementById('bgAudio');
+if (audio) {
+    audio.volume = 0.7;
+    audio.autoplay = true;
+    audio.playsInline = true;
+    audio.loop = true;
+
+    audio.play().catch(() => {
+        // Direct autoplay blocked — try muted autoplay (some browsers allow this)
+        audio.muted = true;
+        audio.play().catch(() => {});
+
+        // Attempt to unmute shortly after (may still be blocked by some browsers)
+        setTimeout(() => {
+            audio.muted = false;
+            audio.play().catch(() => {});
+        }, 1000);
+    });
+
+    // Invisible fallback: if autoplay still didn't produce audible sound,
+    // unmute and play on first user interaction (click/keypress).
+    function userPlay() {
+        audio.muted = false;
+        audio.play().catch(() => {});
+        window.removeEventListener('click', userPlay);
+        window.removeEventListener('keydown', userPlay);
+    }
+
+    window.addEventListener('click', userPlay);
+    window.addEventListener('keydown', userPlay);
+}
+</script>
+
+</body>
+</html>

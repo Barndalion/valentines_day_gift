@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>I Love You Shyan ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff2e63, #ff758c);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 200px;
+            font-size: 60px;
+        }
+
+        p {
+            font-size: 28px;
+        }
+
+        .confetti {
+            position: absolute;
+            font-size: 25px;
+            animation: fall 4s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh); }
+            100% { transform: translateY(110vh); }
+        }
+    </style>
+</head>
+<body>
+
+<h1>I Love You Shyan ❤️</h1>
+<p>Forever yours,<br><strong>Keneil 💘</strong></p>
+<div style="font-size:70px;">🌹💖🍫💐</div>
+
+<script>
+function createConfetti() {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.innerHTML = "🎉";
+    confetti.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+        confetti.remove();
+    }, 4000);
+}
+
+setInterval(createConfetti, 200);
+</script>
+
+</body>
+</html>
